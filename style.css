@@ -424,7 +424,7 @@ li {
 
   height: 100%;
 
-  background: linear-gradient(90deg, #ff5252, #ff1744); /* Dégradé rouge vif */
+  background: linear-gradient(90deg, #4caf50, #81c784); /* Un dégradé vert sympa */
 
   transition: width 0.3s ease-in-out;
 
