@@ -504,9 +504,9 @@ li {
 
 .info-trigger {
 
-    position: fixed;
+    position:absolute;
 
-    top: 94%;
+    top: 74%;
 
     right: 190%;
 
@@ -542,9 +542,9 @@ li {
 
 .info-panel {
 
-    position: fixed;
+    position: absolute;
 
-    top: 75%;
+    top: 55%;
 
     right: 90%;
 
