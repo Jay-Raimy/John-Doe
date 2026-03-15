@@ -1,0 +1,725 @@
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+.underline {text-decoration: none;}
+
+
+
+.header{width: 100vw; height: 12vh; display: flex;}
+
+
+
+.menu-nav{justify-content: space-evenly; font-size: 25px; margin-top: 1%;}
+
+
+
+.menu-nav {
+
+    display: flex;           /* INDISPENSABLE pour que gap fonctionne */
+
+    justify-content: center;  /* Centre les éléments */
+
+    gap: 50px;               /* L'espace magique entre tes boutons */
+
+    font-size: 25px;
+
+    margin-top: 5%;
+
+    list-style: none;
+
+}
+
+.menu-nav li:hover{ transform: scale(1.8); transition: 0.5s;}
+
+
+
+
+/* On nettoie le style des li pour que le flex gère tout */
+
+li {
+
+    list-style: none;
+
+    display: block;
+
+}
+
+
+
+.main {color: white; text-decoration: none;}
+
+
+
+.titre {color: white; font-size: 50px;}
+
+
+
+.sous-texte { color: black; font-size: 25px;}
+
+
+
+.gap-30 { gap: 30px;}
+
+
+
+.top-100 {margin-top: 4%;}
+
+
+
+.flex {display: flex;}
+
+
+
+.direction {flex-direction: column;}
+
+
+
+.justify {justify-content: center;}
+
+
+
+.align{align-items: center;}
+
+
+
+.flex-inline{display: inline-flex;}
+
+
+
+.flex-1{flex: 1;}
+
+
+
+.flex-3{flex: 3;}
+
+
+
+.container{height: 80vh;}
+
+
+
+.text{text-align: center;}
+
+
+
+.background{height: 100vh; width: 100vw; background: url("Doc/Banner.jpg") no-repeat; background-size: 100% 100%;}
+
+
+
+.photo{ position: fixed; top: 84%; }
+
+
+
+
+
+/* Fond de la barre */
+
+.xp-bar-bg {
+
+    background-color: #333;
+
+    border: 2px solid #000;
+
+    border-radius: 10px;
+
+    height: 20px;
+
+    width: 100%;
+
+    margin-top: 0; /* Supprime le 10% ici */
+
+    overflow: hidden;
+
+}
+
+
+
+/* Remplissage de la barre */
+
+.xp-bar-fill {
+
+  height: 100%;
+
+  background: linear-gradient(90deg, #4caf50, #81c784); /* Un dégradé vert sympa */
+
+  transition: width 0.5s ease-in-out; /* Animation fluide si tu changes l'XP */
+
+}
+
+
+
+.xp-container {
+
+  /* Au lieu de 300px, on prend 80% de la largeur du téléphone */
+
+  width: 25%;
+
+ 
+
+  /* Centrage automatique horizontal */
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+
+
+  /* Pour ton décalage spécifique : */
+
+  margin-top: 5vh;    /* 5% de la hauteur de l'écran vers le bas */
+
+  transform: translateX(10px); /* Un léger décalage vers la droite sans casser le centrage */
+
+ 
+
+  font-family: 'Arial', sans-serif;
+
+}
+
+
+
+/* On s'assure que les chiffres restent lisibles sur petit écran */
+
+.xp-label {
+
+    font-family: 'Georgia', serif;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    margin-bottom: 15px;
+
+    margin-top: 10%;
+
+    color: #423003; /* Un vert foncé pour l'XP */
+
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5); /* Pour la lisibilité sur l'image */
+
+}
+
+
+
+/* On supprime les anciennes règles de .xp-stats si elles ne servent plus */
+
+.xp-stats {
+
+    display: none;
+
+}
+
+.xp-controls {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px; /* Espace entre les boutons */
+
+
+
+}
+
+
+
+.btn-xp {
+
+  padding: 10px 20px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  color: white;
+
+  background-color: #444;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  touch-action: manipulation; /* Optimise le clic sur smartphone */
+
+  transition: background 0.2s;
+
+}
+
+
+
+.btn-xp:active {
+
+  background-color: #222; /* Effet de pression sur le bouton */
+
+  transform: scale(0.95);
+
+}
+
+
+
+/* Grille pour organiser les boutons proprement */
+
+.xp-controls-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr; /* 2 colonnes */
+
+  gap: 12px;
+
+  margin-top: 15px;
+
+  padding: 0 10px;
+
+}
+
+
+
+/* Style de base des boutons */
+
+.btn-xp {
+
+  border: 2px solid #222;
+
+  border-radius: 6px;
+
+  padding: 12px;
+
+  font-family: 'Georgia', serif; /* Un côté plus "aventure" */
+
+  font-weight: bold;
+
+  color: white;
+
+  text-shadow: 1px 1px 2px black;
+
+  cursor: pointer;
+
+  transition: all 0.1s ease;
+
+  box-shadow: 0 4px 0 #1a1a1a; /* Effet de relief (3D) */
+
+}
+
+
+
+/* Couleurs pour le PLUS (Vert RPG) */
+
+.btn-plus, .btn-plus-small {
+
+  background: linear-gradient(to bottom, #44a047, #2e7d32);
+
+}
+
+
+
+/* Couleurs pour le MOINS (Rouge/Brun RPG) */
+
+.btn-minus, .btn-minus-small {
+
+  background: linear-gradient(to bottom, #d32f2f, #b71c1c);
+
+}
+
+
+
+/* Boutons secondaires (+5/-5) un peu plus petits/discrets */
+
+.btn-plus-small, .btn-minus-small {
+
+  opacity: 0.9;
+
+  font-size: 13px;
+
+  padding: 8px;
+
+}
+
+
+
+/* Effet au clic (le bouton s'enfonce) */
+
+.btn-xp:active {
+
+  transform: translateY(3px);
+
+  box-shadow: 0 1px 0 #1a1a1a;
+
+}
+
+
+
+.level-badge {
+
+  font-family: 'Georgia', serif;
+
+  font-size: 1.2rem;
+
+  font-weight: bold;
+
+  color: #a17e09; /* Couleur dorée */
+
+  text-align: center;
+
+  margin-bottom: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+}
+
+
+
+.hp-section {
+
+  margin-top: 20px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.hp-label {
+
+  font-family: 'Georgia', serif;
+
+  font-weight: bold;
+
+  font-size: 15px;
+
+  margin-bottom: 5px;
+
+  color: #0e6c12;
+
+}
+
+
+
+.hp-bar-bg {
+
+  background-color: #333;
+
+  border: 2px solid #000;
+
+  border-radius: 10px;
+
+  height: 20px;
+
+  overflow: hidden;
+
+}
+
+
+
+.hp-bar-fill {
+
+  height: 100%;
+
+  background: linear-gradient(90deg, #ff5252, #ff1744); /* Dégradé rouge vif */
+
+  transition: width 0.3s ease-in-out;
+
+}
+
+
+
+/* Boutons PV */
+
+/* On transforme la ligne en grille 2x2 pour mobile */
+
+.hp-controls-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+}
+
+
+
+/* Style commun des boutons HP (on garde ton style existant mais on l'affine) */
+
+.btn-hp {
+
+  padding: 10px;
+
+  border: 2px solid #222;
+
+  border-radius: 6px;
+
+  color: white;
+
+  font-weight: bold;
+
+  text-shadow: 1px 1px 2px black;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 0 #1a1a1a;
+
+  transition: all 0.1s;
+
+}
+
+
+
+.btn-hp:active {
+
+  transform: translateY(3px);
+
+  box-shadow: 0 1px 0 #1a1a1a;
+
+}
+
+
+
+/* Couleurs spécifiques */
+
+.btn-heal { background: linear-gradient(to bottom, #4caf50, #2e7d32); }
+
+.btn-heal-small { background: linear-gradient(to bottom, #81c784, #4caf50); font-size: 0.8rem; }
+
+
+
+.btn-damage { background: linear-gradient(to bottom, #d32f2f, #b71c1c); }
+
+.btn-damage-small { background: linear-gradient(to bottom, #ef5350, #d32f2f); font-size: 0.8rem; }
+
+
+
+/* Petit bouton circulaire flottant */
+
+.info-trigger {
+
+    position: fixed;
+
+    top: 94%;
+
+    right: 190%;
+
+    background: #a17e09;
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+
+    z-index: 1000;
+
+    font-size: 24px;
+
+    border: 2px solid #222;
+
+}
+
+
+
+/* Le panneau d'info */
+
+.info-panel {
+
+    position: fixed;
+
+    top: 75%;
+
+    right: 90%;
+
+    transform: translate(-50%, -50%) scale(0); /* Caché et réduit */
+
+    width: 80%;
+
+    max-width: 300px;
+
+    background: #f4e4bc; /* Couleur vieux papier */
+
+    border: 5px solid #5d4037;
+
+    padding: 20px;
+
+    z-index: 2000;
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+}
+
+
+
+/* Classe qui s'ajoutera via JS pour l'ouvrir */
+
+.info-panel.open {
+
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+
+
+.info-content h3 {
+
+    color: #5d4037;
+
+    text-align: center;
+
+    font-family: 'Georgia', serif;
+
+}
+
+
+
+.stats-list p {
+
+    margin: 10px 0;
+
+    color: #333;
+
+    font-size: 14px;
+
+}
+
+
+
+.close-btn {
+
+    position: absolute;
+
+    top: 5px;
+
+    right: 10px;
+
+    background: none;
+
+    border: none;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    color: #5d4037;
+
+}
+
+
+
+.flavor-text {
+
+    font-style: italic;
+
+    font-size: 12px;
+
+    color: #795548;
+
+    text-align: center;
+
+}
+
+/* --- SECTION STATS (Conteneur global) --- */
+.xp-container {
+    width: 85%;
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stat-section {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- LABELS (Noms des stats) --- */
+.fatigue-label, .faim-label, .soif-label {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.fatigue-label { color: #5c6bc0; } /* Bleu Indigo */
+.faim-label { color: #e67e22; }    /* Orange */
+.soif-label { color: #3498db; }    /* Bleu Clair */
+
+/* --- BARRES (Fond et Remplissage) --- */
+.bar-bg {
+    background-color: #222;
+    border: 2px solid #000;
+    border-radius: 10px;
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    transition: width 0.4s ease-in-out;
+}
+
+/* Couleurs de remplissage */
+.fatigue-fill { background: linear-gradient(90deg, #5c6bc0, #3949ab); }
+.faim-fill { background: linear-gradient(90deg, #ffb142, #e67e22); }
+.soif-fill { background: linear-gradient(90deg, #70a1ff, #1e90ff); }
+
+/* --- BOUTONS DE CONTRÔLE --- */
+.controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-plus, .btn-minus {
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid #222;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #111;
+    transition: all 0.1s;
+    text-shadow: 1px 1px 2px black;
+}
+
+.btn-plus { background: linear-gradient(to bottom, #44a047, #2e7d32); }
+.btn-minus { background: linear-gradient(to bottom, #d32f2f, #b71c1c); }
+
+.btn-plus:active, .btn-minus:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #111;
+}

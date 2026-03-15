@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Santé - John Doe</title>
+</head>
+<body>
+    <div class="background">
+          <header class="header flex justify">        
+            <nav>
+                <ul class="menu-nav">
+                    <li class="Button"><a class="main" href="John_Doe.html">John Doe</a></li>
+                    <li class="Button"><a class="main" href="Sante.html">Santé</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <div class="xp-container">
+            <div class="stat-section">
+                <div class="fatigue-label">Fatigue : <span id="fatigue-current-text">0</span> / 100</div>
+                <div class="bar-bg">
+                    <div id="fatigue-fill" class="bar-fill fatigue-fill" style="width: 0%;"></div>
+                </div>
+                <div class="controls-grid">
+                    <button onclick="modifierStat('fatigue', 1)" class="btn-plus">+1</button>
+                    <button onclick="modifierStat('fatigue', 10)" class="btn-plus">+10</button>
+                    <button onclick="modifierStat('fatigue', -1)" class="btn-minus">-1</button>
+                    <button onclick="modifierStat('fatigue', -10)" class="btn-minus">-10</button>
+                </div>
+            </div>
+
+            <div class="stat-section">
+                <div class="faim-label">Faim : <span id="faim-current-text">0</span> / 100</div>
+                <div class="bar-bg">
+                    <div id="faim-fill" class="bar-fill faim-fill" style="width: 0%;"></div>
+                </div>
+                <div class="controls-grid">
+                    <button onclick="modifierStat('faim', 1)" class="btn-plus">+1</button>
+                    <button onclick="modifierStat('faim', 10)" class="btn-plus">+10</button>
+                    <button onclick="modifierStat('faim', -1)" class="btn-minus">-1</button>
+                    <button onclick="modifierStat('faim', -10)" class="btn-minus">-10</button>
+                </div>
+            </div>
+
+            <div class="stat-section">
+                <div class="soif-label">Soif : <span id="soif-current-text">0</span> / 100</div>
+                <div class="bar-bg">
+                    <div id="soif-fill" class="bar-fill soif-fill" style="width: 0%;"></div>
+                </div>
+                <div class="controls-grid">
+                    <button onclick="modifierStat('soif', 1)" class="btn-plus">+1</button>
+                    <button onclick="modifierStat('soif', 10)" class="btn-plus">+10</button>
+                    <button onclick="modifierStat('soif', -1)" class="btn-minus">-1</button>
+                    <button onclick="modifierStat('soif', -10)" class="btn-minus">-10</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Objet de stockage
+        let stats = { fatigue: 0, faim: 0, soif: 0 };
+
+        function chargerDonnees() {
+            for (let s in stats) {
+                const val = localStorage.getItem('perso_' + s);
+                if (val !== null) stats[s] = parseInt(val);
+            }
+            rafraichirAffichage();
+        }
+
+        function rafraichirAffichage() {
+            for (let s in stats) {
+                let fill = document.getElementById(s + '-fill');
+                let text = document.getElementById(s + '-current-text');
+                if (fill && text) {
+                    fill.style.width = stats[s] + "%";
+                    text.innerText = stats[s];
+                }
+            }
+        }
+
+        function modifierStat(type, valeur) {
+            stats[type] += valeur;
+            if (stats[type] > 100) stats[type] = 100;
+            if (stats[type] < 0) stats[type] = 0;
+            
+            rafraichirAffichage();
+            localStorage.setItem('perso_' + type, stats[type]);
+        }
+
+        window.onload = chargerDonnees;
+    </script>
+</body>
+</html>
