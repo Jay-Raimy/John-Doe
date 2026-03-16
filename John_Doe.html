@@ -1,26 +1,13 @@
-
 <!DOCTYPE html>
-
-<html>
-
+<html lang="fr">
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="style.css">
-
     <title>John Doe</title>
-
 </head>
-
-               
-
 <body>
-
     <div class="background">
-
         <header class="header flex justify">        
             <nav>
                 <ul class="menu-nav">
@@ -30,303 +17,111 @@
             </nav>
         </header>
 
-
-
         <div class="photo">
-
-            <img src="Doc/Head.png" style="width : 25vw; height: auto; max-width: 120px;">
-
+            <img src="Doc/Head.png" style="width : 25vw; height: auto; max-width: 120px;" alt="Portrait">
         </div>
-
-
 
         <div class="xp-container">
-
-            <div class="level-badge">Niveau <span id="level-number">2</span></div>
-
-
-
-            <div class="info-trigger" onclick="toggleInfo()">
-
-    <span class="info-icon">📜</span>
-
-</div>
-
-
-
-    <div id="info-panel" class="info-panel">
-
-        <div class="info-content">
-
-            <button class="close-btn" onclick="toggleInfo()">×</button>
-
-            <h3>Fiche de Personnage</h3>
-
-            <hr>
-
-            <div class="stats-list">
-
-                <p><strong>Âge :</strong> 30 ans</p>
-
-                <p><strong>Taille :</strong> 1m80</p>
-
-                <p><strong>Poids:</strong> 95kg</p>
-
-                <p><strong>Peau grise - Cicatrice oeil droit</strong></p>
-
-                <p><strong>Bonus</strong>+2 en charisme - Tromper autrui : mensonges et faux semblants - Premiers Secours"</p>
-
+            <div class="header-stats">
+                <div class="level-badge">Niveau <span id="level-number">1</span></div>
+                <div class="info-trigger" onclick="toggleInfo()">📜</div>
             </div>
 
-            <hr>
-
-            <p class="flavor-text">"Un mystérieux voyageur venu des terres lointaines..."</p>
-
-        </div>
-
-    </div>
-
-           <div class="stat-section">
-
-            <div class="hp-section">
-
-                <div class="hp-label">Points de Vie : <span id="hp-current-text">100</span> / <span id="hp-max-text">100</span></div>
-
-                <div class="hp-bar-bg">
-
-                    <div id="hp-fill" class="hp-bar-fill" style="width: 100%;"></div>
-
+            <div id="info-panel" class="info-panel">
+                <div class="info-content">
+                    <button class="close-btn" onclick="toggleInfo()">×</button>
+                    <h3>Fiche de Personnage</h3>
+                    <hr>
+                    <div class="stats-list">
+                        <p><strong>Âge :</strong> 30 ans</p>
+                        <p><strong>Taille :</strong> 1m80</p>
+                        <p><strong>Poids :</strong> 95kg</p>
+                        <p><strong>Peau :</strong> Grise - Cicatrice œil droit</p>
+                        <p><strong>Bonus :</strong> +2 charisme - Tromper autrui - Premiers Secours</p>
+                    </div>
+                    <hr>
+                    <p class="flavor-text">"Un mystérieux voyageur venu des terres lointaines..."</p>
                 </div>
-
             </div>
-
-
-
-            <div class="hp-controls-grid">
-
-            <button onclick="modifierHP(-1)" class="btn-hp btn-damage-small">-1</button>
-
-            <button onclick="modifierHP(-10)" class="btn-hp btn-damage">-10 PV</button>
-
-            <button onclick="modifierHP(1)" class="btn-hp btn-heal-small">+1</button>
-
-            <button onclick="modifierHP(10)" class="btn-hp btn-heal">+10 PV</button>
-
-            </div>
-            </div>
-
 
             <div class="stat-section">
-            <br> <div class="xp-label">XP : <span id="xp-current-text">350</span> / <span id="xp-next-text">500</span></div>
-
-
-
-            <div class="xp-bar-bg">
-
-            <div id="xp-fill" class="xp-bar-fill" style="width: 70%;"></div>
-
+                <div class="hp-label" style="color: #2ecc71;">Points de Vie : <span id="hp-current-text">100</span> / 100</div>
+                <div class="bar-bg">
+                    <div id="hp-fill" class="bar-fill" style="width: 100%; background: linear-gradient(90deg, #2ecc71, #27ae60);"></div>
+                </div>
+                <div class="controls-grid">
+                    <button onclick="modifierHP(-1)" class="btn-minus">-1</button>
+                    <button onclick="modifierHP(-10)" class="btn-minus">-10 PV</button>
+                    <button onclick="modifierHP(1)" class="btn-plus">+1</button>
+                    <button onclick="modifierHP(10)" class="btn-plus">+10 PV</button>
+                </div>
             </div>
 
-           
-
-            <div class="xp-stats">
-
-                <span id="xp-current-text">350 XP</span>
-
-                <span id="xp-next-text">500 XP</span>
-
+            <div class="stat-section">
+                <div class="xp-label" style="color: #f1c40f;">XP : <span id="xp-current-text">350</span> / 500</div>
+                <div class="bar-bg">
+                    <div id="xp-fill" class="bar-fill reputation-fill" style="width: 70%;"></div>
+                </div>
+                <div class="controls-grid">
+                    <button onclick="modifierXP(5)" class="btn-plus">+5</button>
+                    <button onclick="modifierXP(50)" class="btn-plus">+50</button>
+                    <button onclick="modifierXP(-5)" class="btn-minus">-5</button>
+                    <button onclick="modifierXP(-50)" class="btn-minus">-50</button>
+                </div>
             </div>
-
-
-
-            <div class="xp-controls-grid">
-
-                <button onclick="modifierXP(5)" class="btn-xp btn-plus-small">+5</button>
-
-                <button onclick="modifierXP(50)" class="btn-xp btn-plus">+50</button>
-
-                <button onclick="modifierXP(-5)" class="btn-xp btn-minus-small">-5</button>
-
-                <button onclick="modifierXP(-50)" class="btn-xp btn-minus">-50</button>
-
-            </div>
-            </div>
-            
-
         </div>
-
     </div>
 
-
-
 <script>
-
-    // 1. TOUTES LES VARIABLES
-
     let xpActuel = 350;
-
     let xpMax = 500;
-
     let niveau = 1;
-
-    let hpActuel = 51;
-
-    let hpMax = 51;
-
-
-
-    // 2. FONCTION UNIQUE DE CHARGEMENT
+    let hpActuel = 100;
+    let hpMax = 100;
 
     function chargerDonnees() {
-
-        const xpSauvegardee = localStorage.getItem('perso_xp');
-
-        const xpMaxSauvegardee = localStorage.getItem('perso_xpMax');
-
-        const niveauSauvegarde = localStorage.getItem('perso_niveau');
-
-        const hpSauvegardee = localStorage.getItem('perso_hp');
-
-
-
-        if (xpSauvegardee !== null) {
-
-            xpActuel = parseInt(xpSauvegardee);
-
-            xpMax = parseInt(xpMaxSauvegardee);
-
-            niveau = parseInt(niveauSauvegarde);
-
-        }
-
-        if (hpSauvegardee !== null) {
-
-            hpActuel = parseInt(hpSauvegardee);
-
-        }
-
+        const xp = localStorage.getItem('perso_xp');
+        const niv = localStorage.getItem('perso_niveau');
+        const hp = localStorage.getItem('perso_hp');
+        if (xp) xpActuel = parseInt(xp);
+        if (niv) niveau = parseInt(niv);
+        if (hp) hpActuel = parseInt(hp);
         rafraichirAffichage();
-
     }
-
-
-
-    // 3. FONCTION UNIQUE DE SAUVEGARDE
 
     function sauvegarderDonnees() {
-
         localStorage.setItem('perso_xp', xpActuel);
-
-        localStorage.setItem('perso_xpMax', xpMax);
-
         localStorage.setItem('perso_niveau', niveau);
-
         localStorage.setItem('perso_hp', hpActuel);
-
     }
-
-
-
-    // 4. MISE À JOUR VISUELLE UNIQUE
 
     function rafraichirAffichage() {
-
-        // Update XP
-
-        let pourcentXP = (xpActuel / xpMax) * 100;
-
-        document.getElementById('xp-fill').style.width = Math.min(100, pourcentXP) + "%";
-
-        document.getElementById('xp-current-text').innerText = Math.floor(xpActuel) + " XP";
-
-        document.getElementById('xp-next-text').innerText = xpMax + " XP";
-
+        document.getElementById('xp-fill').style.width = (xpActuel / xpMax * 100) + "%";
+        document.getElementById('xp-current-text').innerText = xpActuel;
         document.getElementById('level-number').innerText = niveau;
-
-
-
-        // Update PV
-
-        let pourcentHP = (hpActuel / hpMax) * 100;
-
-        document.getElementById('hp-fill').style.width = Math.min(100, pourcentHP) + "%";
-
+        document.getElementById('hp-fill').style.width = (hpActuel / hpMax * 100) + "%";
         document.getElementById('hp-current-text').innerText = hpActuel;
-
-        document.getElementById('hp-max-text').innerText = hpMax;
-
     }
 
-
-
-    // 5. ACTIONS
-
-    function modifierXP(valeur) {
-
-        xpActuel += valeur;
-
-        if (xpActuel >= xpMax) levelUp();
-
+    function modifierXP(v) {
+        xpActuel += v;
+        if (xpActuel >= xpMax) { xpActuel -= xpMax; niveau++; }
         if (xpActuel < 0) xpActuel = 0;
-
-        rafraichirAffichage();
-
-        sauvegarderDonnees();
-
+        rafraichirAffichage(); sauvegarderDonnees();
     }
 
-
-
-    function modifierHP(valeur) {
-
-        hpActuel += valeur;
-
+    function modifierHP(v) {
+        hpActuel += v;
         if (hpActuel > hpMax) hpActuel = hpMax;
-
         if (hpActuel < 0) hpActuel = 0;
-
-        rafraichirAffichage();
-
-        sauvegarderDonnees();
-
+        rafraichirAffichage(); sauvegarderDonnees();
     }
-
-
-
-    function levelUp() {
-
-        let surplus = xpActuel - xpMax;
-
-        niveau++;
-
-        xpMax = 500; // Reste bloqué à 500 comme demandé
-
-        xpActuel = surplus;
-
-        if (xpActuel >= xpMax) levelUp();
-
-    }
-
-
-
-    // LANCEMENT
-
-    chargerDonnees();
-
-
 
     function toggleInfo() {
+        document.getElementById('info-panel').classList.toggle('open');
+    }
 
-    const panel = document.getElementById('info-panel');
-
-    panel.classList.toggle('open');
-
-}
-
+    window.onload = chargerDonnees;
 </script>
-
-
-
 </body>
-
 </html>
