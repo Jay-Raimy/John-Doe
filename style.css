@@ -1,37 +1,68 @@
-/* --- BASE --- */
-* { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; box-sizing: border-box; }
-.background { height: 100vh; width: 100vw; background: url("Doc/Banner.jpg") no-repeat center center; background-size: cover; overflow-x: hidden; }
+/* --- RESET & FONDS --- */
+* { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; box-sizing: border-box; }
+.background { 
+    min-height: 100vh; width: 100vw; 
+    background: url("Doc/Banner.jpg") no-repeat center center fixed; 
+    background-size: cover; 
+    overflow-y: auto;
+}
 
 /* --- NAVIGATION --- */
-.header { width: 100vw; height: 12vh; display: flex; justify-content: center; }
-.menu-nav { display: flex; gap: 50px; font-size: 25px; margin-top: 20px; list-style: none; }
-.main { color: white; text-decoration: none; }
-.menu-nav li:hover { transform: scale(1.2); transition: 0.3s; }
-
-/* --- CONTENEUR GLOBAL --- */
-.xp-container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 5vh auto;
-    padding: 20px;
+.header { width: 100%; height: 10vh; display: flex; justify-content: center; align-items: center; }
+.menu-nav { display: flex; gap: 30px; list-style: none; }
+.main { 
+    color: white; 
+    text-decoration: none; 
+    font-family: 'Georgia', serif; /* L'ancienne police */
+    font-size: 22px; 
+    font-weight: bold; 
+    text-shadow: 2px 2px 4px black; 
 }
+.menu-nav li:hover { transform: scale(1.8); transition: 0.2s; }
 
-/* --- GRILLE DES STATS (2 COLONNES) --- */
-.stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colonnes sur ordi */
-    gap: 20px;
+/* --- CONTENEUR --- */
+.xp-container { width: 90%; max-width: 800px; margin: 20px auto; padding-bottom: 50px; }
+.photo { text-align: center; margin: 20px 0; }
+
+/* --- HEADER STATS (Niveau + Parchemin) --- */
+.header-stats {
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 10px; margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
+.level-badge { color: #f1c40f; font-size: 22px; font-weight: bold; text-transform: uppercase; }
 
-/* --- SECTIONS INDIVIDUELLES --- */
-.stat-section {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* --- BOUTON PARCHEMIN --- */
+.info-trigger {
+    background: #a17e09; width: 45px; height: 45px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; font-size: 20px; border: 2px solid #222;
+    box-shadow: 0 4px 0 #5d4037; transition: 0.1s;
 }
+.info-trigger:active { transform: translateY(3px); box-shadow: 0 1px 0 #5d4037; }
 
-/* --- LABELS EN COULEUR --- */
+/* --- PANNEAU INFO (FICHE PERSO) --- */
+.info-panel {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+    width: 85%; max-width: 350px; background: #f4e4bc; border: 5px solid #5d4037;
+    padding: 20px; z-index: 3000; border-radius: 15px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.info-panel.open { transform: translate(-50%, -50%) scale(1); }
+.info-content h3 { color: #5d4037; text-align: center; margin-bottom: 10px; border-bottom: 2px solid #5d4037; }
+.stats-list p { margin: 8px 0; color: #333; font-size: 14px; }
+.close-btn { position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 28px; cursor: pointer; color: #5d4037; }
+.flavor-text { font-style: italic; font-size: 12px; color: #795548; text-align: center; margin-top: 15px; }
+
+/* --- GRILLE DES STATS (Sante.html) --- */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+/* --- SECTIONS & BARRES --- */
+.stat-section { background: rgba(0, 0, 0, 0.75); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+.bar-bg { background: #111; border: 2px solid #000; border-radius: 10px; height: 20px; width: 100%; overflow: hidden; margin: 10px 0; }
+.bar-fill { height: 100%; transition: width 0.4s ease-out; }
+
+/* --- COULEURS LABELS & BARRES --- */
 .fatigue-label { color: #5c6bc0; font-weight: bold; }
 .faim-label { color: #e67e22; font-weight: bold; }
 .soif-label { color: #3498db; font-weight: bold; }
@@ -39,32 +70,23 @@
 .mutagene-label { color: #a29bfe; font-weight: bold; }
 .reputation-label { color: #f1c40f; font-weight: bold; }
 
-span[id$="-current-text"] { font-size: 1.1rem; }
-
-/* --- BARRES --- */
-.bar-bg { background-color: #222; border: 2px solid #000; border-radius: 10px; height: 18px; width: 100%; overflow: hidden; margin: 8px 0; }
-.bar-fill { height: 100%; transition: width 0.4s ease-in-out; }
-
-/* Couleurs des barres */
-.fatigue-fill { background: linear-gradient(90deg, #5c6bc0, #3949ab); }
-.faim-fill { background: linear-gradient(90deg, #ffb142, #e67e22); }
-.soif-fill { background: linear-gradient(90deg, #70a1ff, #1e90ff); }
 .humanite-fill { background: linear-gradient(90deg, #00d4ff, #0056b3); }
-.mutagene-fill { background: linear-gradient(90deg, #a29bfe, #6c5ce7); }
 .reputation-fill { background: linear-gradient(90deg, #f1c40f, #d4ac0d); }
+.mutagene-fill { background: linear-gradient(90deg, #a29bfe, #6c5ce7); }
 
 /* --- BOUTONS --- */
-.controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .btn-plus, .btn-minus {
-    padding: 8px; border-radius: 6px; border: 2px solid #222; color: white;
+    padding: 10px; border-radius: 6px; border: 2px solid #222; color: white;
     font-weight: bold; cursor: pointer; box-shadow: 0 3px 0 #111; text-shadow: 1px 1px 2px black;
 }
-.btn-plus { background: linear-gradient(to bottom, #44a047, #2e7d32); }
-.btn-minus { background: linear-gradient(to bottom, #d32f2f, #b71c1c); }
+.btn-plus { background: linear-gradient(to bottom, #2ecc71, #27ae60); }
+.btn-minus { background: linear-gradient(to bottom, #e74c3c, #c0392b); }
 .btn-plus:active, .btn-minus:active { transform: translateY(2px); box-shadow: 0 1px 0 #111; }
 
-/* --- MOBILE (1 COLONNE) --- */
-@media (max-width: 768px) {
+/* --- MOBILE --- */
+@media (max-width: 600px) {
     .stats-grid { grid-template-columns: 1fr; }
-    .xp-container { width: 95%; margin-top: 2vh; }
+    .main { font-size: 16px; }
+    .menu-nav { gap: 15px; }
 }
