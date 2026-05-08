@@ -25,15 +25,24 @@
 
         <div class="xp-container">
             <div class="header-stats">
-                <div class="level-badge">Niveau <span id="level-number">1</span></div>
-                <div class="info-trigger" onclick="toggleInfo()">📜</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="level-badge">NIVEAU <span id="level-number">1</span></div>
+                    <div class="info-trigger" onclick="toggleInfo()">📜</div>
+                </div>
+
+                <div class="transfer-box">
+                    <h4>Transfert</h4>
+                    <div class="transfer-btns">
+                        <button onclick="exporterDonnees()" class="btn-transfer exp">Exporter</button>
+                        <button onclick="importerDonnees()" class="btn-transfer imp">Importer</button>
+                    </div>
+                </div>
             </div>
 
             <div id="info-panel" class="info-panel">
                 <div class="info-content">
                     <button class="close-btn" onclick="toggleInfo()">×</button>
                     <h3>Fiche de Personnage</h3>
-                    <hr>
                     <div class="stats-list">
                         <p><strong>Âge :</strong> 30 ans</p>
                         <p><strong>Taille :</strong> 1m80</p>
@@ -41,7 +50,7 @@
                         <p><strong>Peau :</strong> Grise - Cicatrice œil droit</p>
                         <p><strong>Bonus :</strong> +2 charisme - Tromper autrui - Premiers Secours</p>
                     </div>
-                    <hr>
+                    <hr style="opacity: 0.2; margin: 15px 0;">
                     <p class="flavor-text">"Un mystérieux voyageur venu des terres lointaines..."</p>
                 </div>
             </div>
@@ -121,6 +130,34 @@
 
     function toggleInfo() {
         document.getElementById('info-panel').classList.toggle('open');
+    }
+
+    function exporterDonnees() {
+        let toutesLesDonnees = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            let cle = localStorage.key(i);
+            if (cle.startsWith('perso_')) {
+                toutesLesDonnees[cle] = localStorage.getItem(cle);
+            }
+        }
+        const code = btoa(JSON.stringify(toutesLesDonnees));
+        prompt("Copie ce code de transfert :", code);
+    }
+
+    function importerDonnees() {
+        const code = prompt("Colle le code de transfert ici :");
+        if (code) {
+            try {
+                const donnees = JSON.parse(atob(code));
+                for (let cle in donnees) {
+                    localStorage.setItem(cle, donnees[cle]);
+                }
+                alert("✅ Données importées !");
+                location.reload();
+            } catch (e) {
+                alert("❌ Code invalide.");
+            }
+        }
     }
 
     window.onload = chargerDonnees;
