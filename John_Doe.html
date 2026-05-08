@@ -24,19 +24,9 @@
         </div>
 
         <div class="xp-container">
-            <div class="header-stats">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <div class="level-badge">NIVEAU <span id="level-number">1</span></div>
-                    <div class="info-trigger" onclick="toggleInfo()">📜</div>
-                </div>
-
-                <div class="transfer-box">
-                    <h4>Transfert</h4>
-                    <div class="transfer-btns">
-                        <button onclick="exporterDonnees()" class="btn-transfer exp">Exporter</button>
-                        <button onclick="importerDonnees()" class="btn-transfer imp">Importer</button>
-                    </div>
-                </div>
+            <div class="header-stats" style="justify-content: center; gap: 20px;">
+                <div class="level-badge">NIVEAU <span id="level-number">1</span></div>
+                <div class="info-trigger" onclick="toggleInfo()">📜</div>
             </div>
 
             <div id="info-panel" class="info-panel">
@@ -80,10 +70,19 @@
                     <button onclick="modifierXP(-50)" class="btn-minus">-50</button>
                 </div>
             </div>
+
+            <div class="transfer-box" style="margin-top: 30px; max-width: 250px; margin-left: auto; margin-right: auto;">
+                <h4>Transfert de données</h4>
+                <div class="transfer-btns">
+                    <button onclick="exporterDonnees()" class="btn-transfer exp">Exporter</button>
+                    <button onclick="importerDonnees()" class="btn-transfer imp">Importer</button>
+                </div>
+            </div>
         </div>
     </div>
 
 <script>
+    // ... (le reste du script reste identique à ton fichier précédent)
     let xpActuel = 350;
     let xpMax = 500;
     let niveau = 2;
