@@ -183,3 +183,15 @@
 }
 .qty-btn:hover { background: #795548; }
 .qty-btn:active { transform: scale(0.9); }
+
+/* Pour les résistances */
+.res-label {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.four-btns {
+    grid-template-columns: 1fr 1fr; /* Garde 2 colonnes de boutons sur mobile */
+    gap: 5px;
+}
