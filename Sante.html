@@ -13,6 +13,7 @@
                 <ul class="menu-nav">
                     <li class="Button"><a class="main" href="John_Doe.html">John Doe</a></li>
                     <li class="Button"><a class="main" href="Sante.html">Santé</a></li>
+                    <li class="Button"><a class="main" href="Inventaire.html">Inventaire</a></li>
                 </ul>
             </nav>
         </header>
@@ -65,6 +66,17 @@
                         <button onclick="modifierStat('faim', 10)" class="btn-plus">+10</button>
                         <button onclick="modifierStat('faim', -1)" class="btn-minus">-1</button>
                         <button onclick="modifierStat('faim', -10)" class="btn-minus">-10</button>
+                    </div>
+                </div>
+
+                <div class="stat-section">
+                    <div class="mutagene-label">Mutagène : <span id="mutagene-current-text">0</span> / 100</div>
+                    <div class="bar-bg">
+                        <div id="mutagene-fill" class="bar-fill mutagene-fill" style="width: 0%;"></div>
+                    </div>
+                    <div class="controls-grid">
+                        <button onclick="modifierStat('mutagene', 10)" class="btn-plus">+10</button>
+                        <button onclick="modifierStat('mutagene', -10)" class="btn-minus">-10</button>
                     </div>
                 </div>
 
