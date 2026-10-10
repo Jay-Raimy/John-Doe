@@ -25,7 +25,7 @@
 
         <div class="xp-container">
             <div class="header-stats" style="justify-content: center; gap: 20px;">
-                <div class="level-badge">NIVEAU <span id="level-number">1</span></div>
+                <div class="level-badge">NIVEAU <span id="level-number">2</span></div>
                 <div class="info-trigger" onclick="toggleInfo()">📜</div>
             </div>
 
@@ -82,17 +82,46 @@
     </div>
 
 <script>
-    // ... (le reste du script reste identique à ton fichier précédent)
     let xpActuel = 350;
     let xpMax = 500;
     let niveau = 2;
     let hpActuel = 47;
     let hpMax = 51;
 
+    // Préfixe propre à John Doe
+    const PREFIXE_PERSO = 'perso_john_';
+
+    // Profils raccourcis prédéfinis
+    const PROFILS_PREDEFINIS = {
+        "LEO1": {
+            "perso_leo_xp": 0,
+            "perso_leo_niveau": 1,
+            "perso_leo_hp": 51
+        },
+        "JOHN1": {
+            "perso_john_hp": 16,
+            "perso_john_niveau": 2,
+            "perso_john_xp": 355,
+            "perso_humanite": 30,
+            "perso_faim": 0,
+            "perso_soif": 0,
+            "perso_mutagene": 80,
+            "perso_fatigue": 0,
+            "perso_reputation": 44,
+            "perso_res_Chaud": 0,
+            "perso_res_Morsure": 15,
+            "perso_inventaire": JSON.stringify([
+                { nom: "Chêti (plante parlante accrochée à mon épaule)", poids: 1, quantite: 1 },
+                { nom: "Batte avec sangle 1D6", poids: 2, quantite: 1 },
+                { nom: "Gilet pare balles +2 esquive, +20 armure, -2 dégâts subit", poids: 0, quantite: 1 }
+            ])
+        }
+    };
+
     function chargerDonnees() {
-        const xp = localStorage.getItem('perso_xp');
-        const niv = localStorage.getItem('perso_niveau');
-        const hp = localStorage.getItem('perso_hp');
+        const xp = localStorage.getItem(PREFIXE_PERSO + 'xp');
+        const niv = localStorage.getItem(PREFIXE_PERSO + 'niveau');
+        const hp = localStorage.getItem(PREFIXE_PERSO + 'hp');
         if (xp) xpActuel = parseInt(xp);
         if (niv) niveau = parseInt(niv);
         if (hp) hpActuel = parseInt(hp);
@@ -100,9 +129,9 @@
     }
 
     function sauvegarderDonnees() {
-        localStorage.setItem('perso_xp', xpActuel);
-        localStorage.setItem('perso_niveau', niveau);
-        localStorage.setItem('perso_hp', hpActuel);
+        localStorage.setItem(PREFIXE_PERSO + 'xp', xpActuel);
+        localStorage.setItem(PREFIXE_PERSO + 'niveau', niveau);
+        localStorage.setItem(PREFIXE_PERSO + 'hp', hpActuel);
     }
 
     function rafraichirAffichage() {
@@ -117,14 +146,16 @@
         xpActuel += v;
         if (xpActuel >= xpMax) { xpActuel -= xpMax; niveau++; }
         if (xpActuel < 0) xpActuel = 0;
-        rafraichirAffichage(); sauvegarderDonnees();
+        rafraichirAffichage();
+        sauvegarderDonnees();
     }
 
     function modifierHP(v) {
         hpActuel += v;
         if (hpActuel > hpMax) hpActuel = hpMax;
         if (hpActuel < 0) hpActuel = 0;
-        rafraichirAffichage(); sauvegarderDonnees();
+        rafraichirAffichage();
+        sauvegarderDonnees();
     }
 
     function toggleInfo() {
@@ -135,28 +166,38 @@
         let toutesLesDonnees = {};
         for (let i = 0; i < localStorage.length; i++) {
             let cle = localStorage.key(i);
-            if (cle.startsWith('perso_')) {
+            if (cle.startsWith(PREFIXE_PERSO) || cle.startsWith('perso_')) {
                 toutesLesDonnees[cle] = localStorage.getItem(cle);
             }
         }
         const code = btoa(JSON.stringify(toutesLesDonnees));
-        prompt("Copie ce code de transfert :", code);
+        prompt("Copie ce code de transfert pour John Doe :", code);
     }
 
     function importerDonnees() {
-        const code = prompt("Colle le code de transfert ici :");
-        if (code) {
+        const saisie = prompt("Colle le code de transfert ou entre un mot-clé (ex: JOHN1, LEO1) :");
+        if (!saisie) return;
+
+        let donnees = null;
+        const codeNettoye = saisie.trim().toUpperCase();
+
+        if (PROFILS_PREDEFINIS[codeNettoye]) {
+            donnees = PROFILS_PREDEFINIS[codeNettoye];
+        } else {
             try {
-                const donnees = JSON.parse(atob(code));
-                for (let cle in donnees) {
-                    localStorage.setItem(cle, donnees[cle]);
-                }
-                alert("✅ Données importées !");
-                location.reload();
+                donnees = JSON.parse(atob(saisie));
             } catch (e) {
-                alert("❌ Code invalide.");
+                alert("❌ Code ou mot-clé invalide.");
+                return;
             }
         }
+
+        for (let cle in donnees) {
+            localStorage.setItem(cle, donnees[cle]);
+        }
+        
+        alert("✅ Données importées avec succès !");
+        location.reload();
     }
 
     window.onload = chargerDonnees;
